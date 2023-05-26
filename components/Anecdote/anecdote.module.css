@@ -1,0 +1,7 @@
+.anecdote {
+  background-color: #ece8df;
+  color: #444;
+  padding: 1rem;
+  font-family: var(--font-walter);
+  font-weight: 400;
+}

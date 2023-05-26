@@ -1,0 +1,21 @@
+{
+    "projectId": "646d8288ef395f416d9a",
+    "projectName": "Anecdotarium",
+    "functions": [
+        {
+            "$id": "646d8bfab0245d56093f",
+            "name": "My Awesome Function",
+            "runtime": "node-16.0",
+            "path": "functions/My Awesome Function",
+            "entrypoint": "src/index.js",
+            "ignore": [
+                "node_modules",
+                ".npm"
+            ],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+.userPanel {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  color: black;
+  padding: 5px;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: #bbb;
+}
