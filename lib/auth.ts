@@ -15,7 +15,8 @@ export const getUserData = async () => {
 export const login = async (email: string, password: string) => {
   try {
     const account = new Account(client);
-    return account.createEmailSession(email, password);
+    await account.createEmailSession(email, password);
+    return account.get();
   } catch (error) {
     const appwriteError = error as AppwriteException;
     throw new Error(appwriteError.message);

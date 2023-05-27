@@ -1,6 +1,6 @@
 "use client";
 import { useAuth } from "@/components/AuthProvider";
-import UserPanel from "@/components/UserPanel";
+import UserProfile from "@/components/UserProfile";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -21,7 +21,7 @@ export default function LoggedInLayout({
   return (
     <>
       <nav>
-        <UserPanel />
+        <UserProfile />
       </nav>
 
       {children}

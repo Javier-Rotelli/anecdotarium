@@ -1,0 +1,27 @@
+.userPanel {
+  list-style: none;
+  position: fixed;
+  right: 1.5rem;
+  color: black;
+  margin-right: 5px;
+  line-height: 4rem;
+  background-color: #bbb;
+  z-index: 9;
+}
+
+.userPanel li {
+}
+
+.userPanel li button,
+.userPanel li div {
+  width: 100%;
+  padding: 15px;
+  margin: 5px;
+  border-radius: 1px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+.userPanel li button:hover {
+  background-color: rgb(80, 80, 80);
+}

@@ -17,6 +17,7 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
+
   const [user, setUser] = useState<Models.User<Models.Preferences>>();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,7 +33,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const login = async (username: string, password: string) => {
-    const account = await appwriteAuth.login(username, password);
+    const usr = await appwriteAuth.login(username, password);
+    setUser(usr);
     router.push("/");
   };
 
