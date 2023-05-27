@@ -1,7 +1,7 @@
-import UserPanel from "@/components/UserPanel";
 import "./globals.css";
 import styles from "./page.module.css";
 import { Inter } from "next/font/google";
+import { AuthProvider } from "@/components/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <main className={styles.main}>
-          <UserPanel />
-          {children}
+          <AuthProvider>{children}</AuthProvider>
         </main>
       </body>
     </html>

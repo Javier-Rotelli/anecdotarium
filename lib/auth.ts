@@ -1,8 +1,6 @@
-import { Account, AppwriteException, Client } from "appwrite";
+import { Account, AppwriteException } from "appwrite";
 
-const client = new Client()
-  .setEndpoint(process.env.REACT_APP_ENDPOINT)
-  .setProject(process.env.REACT_APP_PROJECT);
+import client from "@/lib/appwrite";
 
 export const getUserData = async () => {
   try {
@@ -43,5 +41,3 @@ export const register = async (email: string, password: string) => {
     throw new Error(appwriteError.message);
   }
 };
-
-export default client;
