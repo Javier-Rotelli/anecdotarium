@@ -5,3 +5,7 @@
   font-family: var(--font-walter);
   font-weight: 400;
 }
+
+.author {
+  align-self: flex-end;
+}

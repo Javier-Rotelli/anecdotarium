@@ -1,5 +1,5 @@
 "use client";
-import walter from "../font";
+import walter from "../../../../../components/font";
 
 import styles from "./anecdote.module.css";
 import { Anecdote } from "@/models/anecdotes";
@@ -16,7 +16,7 @@ export default function Anecdote({ anecdote: { text, uid } }: Props) {
       className={`${styles.anecdote} ${walter.variable}`}
     >
       <span>{text}</span>
-      <div> - {uid}</div>
+      <div className={styles.author}> - {uid}</div>
     </div>
   );
 }
