@@ -1,0 +1,8 @@
+.navBar {
+  display: flex;
+  justify-content: flex-end;
+  background: cadetblue;
+  width: 100vw;
+  height: 5rem;
+  padding: 1rem;
+}

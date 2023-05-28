@@ -4,6 +4,8 @@ import UserProfile from "@/components/UserProfile";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+import styles from "./layout.module.css";
+
 export default function LoggedInLayout({
   children, // will be a page or nested layout
 }: {
@@ -20,7 +22,7 @@ export default function LoggedInLayout({
 
   return (
     <>
-      <nav>
+      <nav className={styles.navBar}>
         <UserProfile />
       </nav>
 

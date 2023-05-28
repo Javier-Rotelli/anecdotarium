@@ -6,7 +6,7 @@ import { useState } from "react";
 import UserPanel from "./UserPanel";
 
 const UserProfile = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const toggleIsOpen = () => setIsOpen(!isOpen);
 
   return (
