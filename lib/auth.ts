@@ -16,6 +16,11 @@ export const login = async (email: string, password: string) => {
   try {
     const account = new Account(client);
     await account.createEmailSession(email, password);
+    if (typeof window !== "undefined" && window.localStorage) {
+      document.cookie = `cookieFallback=${window.localStorage.getItem(
+        "cookieFallback"
+      )}; path=/; SameSite=Lax; ;max-age=7776000; Secure`;
+    }
     return account.get();
   } catch (error) {
     const appwriteError = error as AppwriteException;
@@ -26,6 +31,11 @@ export const login = async (email: string, password: string) => {
 export const logout = async () => {
   try {
     const account = new Account(client);
+    if (typeof window !== "undefined" && window.localStorage) {
+      document.cookie = `cookieFallback=${window.localStorage.getItem(
+        "cookieFallback"
+      )};path=/ ; SameSite=Lax; ;max-age=0; Secure`;
+    }
     return account.deleteSession("current");
   } catch (error: unknown) {
     const appwriteError = error as AppwriteException;
