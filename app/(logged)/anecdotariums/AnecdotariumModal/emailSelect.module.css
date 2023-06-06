@@ -1,0 +1,7 @@
+.emailList {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 16px;
+}

@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 
 import client from "@/lib/appwrite";
 
+export const DATABASE_ID = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID;
 export const setSession = () => {
   const c = cookies();
 
