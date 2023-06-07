@@ -1,21 +1,35 @@
 "use client";
 import { UserIcon } from "@heroicons/react/24/solid";
-import styles from "./userProfile.module.css";
-import UserPic from "./UserPic";
-import { useState } from "react";
-import UserPanel from "./UserPanel";
+
+import { useAuth } from "../AuthProvider";
 
 const UserProfile = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleIsOpen = () => setIsOpen(!isOpen);
+  const { user, logout } = useAuth();
 
   return (
     <>
-      <button className={styles.userProfile} onClick={toggleIsOpen}>
-        {/* <UserPic /> */}
-        <UserIcon />
-      </button>
-      {isOpen ? <UserPanel /> : null}
+      <div className="dropdown dropdown-end">
+        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+          <div className="w-10 rounded-full">
+            <UserIcon />
+          </div>
+        </label>
+        <ul
+          tabIndex={0}
+          className="p-2 mt-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+        >
+          <li>{<a className="justify-between">{user?.name}</a>}</li>
+          <li>
+            <button
+              onClick={() => {
+                logout();
+              }}
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };

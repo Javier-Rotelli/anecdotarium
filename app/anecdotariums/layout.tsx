@@ -4,7 +4,7 @@ import UserProfile from "@/components/UserProfile";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-import styles from "./layout.module.css";
+import Link from "next/link";
 
 export default function LoggedInLayout({
   children, // will be a page or nested layout
@@ -22,7 +22,15 @@ export default function LoggedInLayout({
 
   return (
     <>
-      <nav className={styles.navBar}>
+      <nav className="navbar bg-neutral">
+        <div className="flex-1 text-neutral-content">
+          <Link
+            className="text-xl normal-case btn btn-ghost"
+            href="/anecdotariums"
+          >
+            Anecdotarium
+          </Link>
+        </div>
         <UserProfile />
       </nav>
 
