@@ -1,14 +1,16 @@
 "use client";
-import EmailSelect from "./EmailSelect";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 type props = {
   isOpen: boolean;
   onClose: () => void;
+  boardId: string;
 };
 
-const AnecdotariumModal = ({ isOpen, onClose }: props) => {
+const AnecdoteModal = ({ isOpen, onClose, boardId }: props) => {
   const ref = useRef<HTMLDialogElement>(null);
+  const router = useRouter();
   useEffect(() => {
     if (isOpen) {
       ref.current?.showModal();
@@ -19,21 +21,32 @@ const AnecdotariumModal = ({ isOpen, onClose }: props) => {
     }
   }, [isOpen]);
 
-  const [name, setName] = useState("");
-  const [emails, setEmails] = useState<string[]>([]);
+  const [anecdote, setAnecdote] = useState("");
+  const [image, setImage] = useState<File | null>(null);
+
   const [saving, setSaving] = useState(false);
-  const isValid = name !== "";
+
+  const isValid = anecdote !== "";
 
   const onSave = async () => {
     setSaving(true);
-    await fetch("api/anecdotarium", {
+    const formData = new FormData();
+    formData.append("anecdote", anecdote);
+    formData.append("boardId", boardId);
+    if (image !== null) {
+      formData.append("image", image);
+    }
+
+    await fetch("/api/anecdote", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: name, users: emails }),
+
+      body: formData,
     });
     setSaving(false);
+    setAnecdote("");
+    setImage(null);
+    router.refresh();
+    onClose();
   };
 
   return (
@@ -45,22 +58,36 @@ const AnecdotariumModal = ({ isOpen, onClose }: props) => {
         >
           ✕
         </button>
-        <h3 className="text-lg font-bold">Create your own board!</h3>
+        <h3 className="text-lg font-bold">Tell your group a good story!</h3>
         <div className="w-full form-control">
           <label className="label">
-            <span className="label-text-alt">Name</span>
+            <span className="label-text-alt">Anecdote</span>
           </label>
-          <input
-            type="text"
-            placeholder="Type here"
-            className="w-full input input-bordered"
-            value={name}
+          <textarea
+            className="h-24 textarea textarea-bordered"
+            placeholder="Share a good story with your people"
             onChange={(e) => {
-              setName(e.target.value);
+              setAnecdote(e.target.value);
             }}
+            value={anecdote}
           />
         </div>
-        <EmailSelect value={emails} setValue={setEmails} />
+        <div className="w-full max-w-xs form-control">
+          <label className="label">
+            <span className="label-text">(optional) Pick an image</span>
+          </label>
+          <input
+            type="file"
+            className="w-full max-w-xs file-input file-input-bordered"
+            onChange={(e) => {
+              if (e.target.files) {
+                setImage(e.target.files[0]);
+              }
+            }}
+            disabled
+            placeholder="Coming soon!"
+          />
+        </div>
         <div className="modal-action">
           <button className="btn btn-neutral">Close</button>
           <button
@@ -83,4 +110,4 @@ const AnecdotariumModal = ({ isOpen, onClose }: props) => {
   );
 };
 
-export default AnecdotariumModal;
+export default AnecdoteModal;

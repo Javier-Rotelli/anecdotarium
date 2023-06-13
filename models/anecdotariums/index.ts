@@ -10,6 +10,7 @@ import {
   Query,
   Role,
 } from "appwrite";
+import { getAnecdotes } from "../anecdotes";
 
 export interface Anecdotarium extends Models.Document {
   name: string;
@@ -40,7 +41,6 @@ export const createAnecdotarium = async (
   anecdotarium: Omit<Anecdotarium, keyof Models.Document>
 ) => {
   setSession();
-  console.log(anecdotarium);
   const userID = (await getUserData()).$id;
   const databases = new Databases(client);
   const response = await databases.createDocument<Anecdotarium>(
@@ -66,16 +66,7 @@ export const getAnecdotarium = async ($id: string) => {
     $id
   );
 
-  const anecdotes = (
-    await databases.listDocuments<Anecdote>(
-      DATABASE_ID,
-      ANECDOTES_COLLECTION_ID,
-      [Query.equal("boardId", $id)]
-    )
-  ).documents;
+  const anecdotes = await getAnecdotes($id);
 
-  return {
-    anecdotarium,
-    anecdotes,
-  };
+  return anecdotarium;
 };
