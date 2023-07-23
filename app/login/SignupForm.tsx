@@ -12,7 +12,12 @@ const SignupForm = () => {
   const [repPassword, setRepPassword] = useState("");
 
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        register(email, password);
+      }}
+    >
       <FormInput
         name="email"
         label="Email*"
@@ -43,14 +48,11 @@ const SignupForm = () => {
       />
 
       <div className="mt-6 form-control">
-        <button
-          className="btn btn-primary"
-          onClick={() => register(email, password)}
-        >
+        <button className="btn btn-primary" type="submit">
           Signup
         </button>
       </div>
-    </>
+    </form>
   );
 };
 
